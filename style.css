@@ -1,0 +1,71 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1a1a1a;
+    color: #00ff66;
+    margin: 0;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.item-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 2vh 5vw;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.item-section h2 {
+    /* Corrected: Using clamp() for responsive font sizing */
+    font-size: clamp(2em, 8vw, 4em);
+    margin-bottom: 0.5em;
+    text-shadow: 0 0 5px #00ff66;
+}
+
+.item-section p {
+    max-width: 90vw;
+    /* Corrected: Using clamp() for responsive font sizing */
+    font-size: clamp(1em, 4vw, 1.2em);
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+.item-section img,
+.item-section video {
+    max-width: 100%;
+    /* Corrected: Using a more accommodating max-height */
+    max-height: 50vh;
+    height: auto;
+    border: 2px solid #00ff66;
+    box-shadow: 0 0 10px #00ff66;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .item-section {
+        padding: 5vh 5vw;
+    }
+    
+    .item-section img,
+    .item-section video {
+        /* This ensures other images/videos can stretch if needed, but are still contained by overflow:hidden */
+        max-height: none; 
+    }
+
+    /* SPECIFIC FIX FOR TALL IMAGES */
+    #image3,
+    #bots1,
+    #bots2 { /* Keeping bots2 here too, just in case it also has this issue */
+        max-height: 45vh; /* Try reducing this to 45% of viewport height */
+        margin-top: 10px; /* Reduce space above these specific images to save vertical room */
+        margin-bottom: 10px; /* Reduce space below these specific images */
+    }
+}
